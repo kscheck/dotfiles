@@ -27,9 +27,11 @@ set $mod Mod4
 
 #Multiple monitors (VGA Monitor)
 exec xrandr --output DVI-0 --auto --left-of LVDS1
+#redshift
+exec redshift-gtk -l 53.08:8.8 -t 5700:3500 -g 0.8 -m randr -v
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 -- +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -- -5%
+bindsym XF86AudioRaiseVolume exec amixer -q set Master 2dB+ unmute
+bindsym XF86AudioLowerVolume exec amixer -q set Master 2dB- unmute
 bindsym XF86AudioMute exec amixer -q set Master toggle
 
 # Sreen brightness controls
@@ -39,7 +41,9 @@ bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightne
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-#gap_size 16 
+gaps inner 15
+gaps outer 5
+
 # start a terminal
 bindsym $mod+Return exec urxvt
 # kill  window
@@ -57,7 +61,6 @@ bindsym $mod+j focus left
 bindsym $mod+k focus down
 bindsym $mod+l focus up
 bindsym $mod+odiaeresis focus right
-
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
